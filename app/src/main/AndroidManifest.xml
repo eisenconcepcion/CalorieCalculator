@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".result" />
+        <activity android:name=".progress" />
+        <activity android:name=".list"></activity>
     </application>
 
 </manifest>
