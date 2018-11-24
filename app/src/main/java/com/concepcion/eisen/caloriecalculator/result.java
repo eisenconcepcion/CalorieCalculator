@@ -1,6 +1,7 @@
 package com.concepcion.eisen.caloriecalculator;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,21 @@ import org.w3c.dom.Text;
 public class result extends AppCompatActivity {
 
     TextView tv_bmr,tv_maintain, tv_lose1, tv_lose2, tv_gain1, tv_gain2;
+    DBHelper helper;
+    Cursor table;
+    String cMaintain;
+
     @Override
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        helper = new DBHelper(this);
+        table= helper.populateTable();
+        table.moveToFirst();
 
         try {
             tv_bmr = (TextView) findViewById(R.id.tvbmr);
@@ -38,7 +50,10 @@ public class result extends AppCompatActivity {
             int weight = Integer.parseInt(input_weight);
             int feet = Integer.parseInt(input_feet);
             int inches = Integer.parseInt(input_inches);
+            int temp = feet + inches;
 
+            String total_height_inches = Integer.toString(temp);
+            String total_weight = Integer.toString(weight);
             double height = getHeight(feet, inches);
             double bmr;
 
@@ -53,24 +68,104 @@ public class result extends AppCompatActivity {
             tv_bmr.setText(bmr_result);
 
             //GIVING VALUES TO THE ACTIVITY
-            double lose1, lose2, gain1, gain2, maintain;
+            int lose1, lose2, gain1, gain2, maintain;
+            double maintain_temp;
             switch (input_activity) {
 
                 case "SEDENTARY":
-                    maintain = bmr * 1.2;
+                    maintain_temp = bmr * 1.2;
+                    maintain = (int) maintain_temp;
                     lose1 = maintain - 500;
                     lose2 = maintain - 1000;
                     gain1 = maintain + 500;
                     gain2 = maintain + 100;
 
-                    tv_maintain.setText(Double.toString(maintain));
-                    tv_lose1.setText(Double.toString(lose1));
-                    tv_lose2.setText(Double.toString(lose2));
-                    tv_gain1.setText(Double.toString(gain1));
-                    tv_gain2.setText(Double.toString(gain2));
+                    cMaintain = Double.toString(maintain);
+                    tv_maintain.setText(Integer.toString(maintain));
+                    tv_lose1.setText(Integer.toString(lose1));
+                    tv_lose2.setText(Integer.toString(lose2));
+                    tv_gain1.setText(Integer.toString(gain1));
+                    tv_gain2.setText(Integer.toString(gain2));
                     break;
 
+                case "LIGHT":
+                    maintain_temp = bmr * 1.375;
+                    maintain = (int) maintain_temp;
+                    lose1 = maintain - 500;
+                    lose2 = maintain - 1000;
+                    gain1 = maintain + 500;
+                    gain2 = maintain + 100;
+
+                    cMaintain = Double.toString(maintain);
+                    tv_maintain.setText(Integer.toString(maintain));
+                    tv_lose1.setText(Integer.toString(lose1));
+                    tv_lose2.setText(Integer.toString(lose2));
+                    tv_gain1.setText(Integer.toString(gain1));
+                    tv_gain2.setText(Integer.toString(gain2));
+                    break;
+
+                case "MODERATE":
+                    maintain_temp = bmr * 1.55;
+                    maintain = (int) maintain_temp;
+                    lose1 = maintain - 500;
+                    lose2 = maintain - 1000;
+                    gain1 = maintain + 500;
+                    gain2 = maintain + 100;
+
+                    cMaintain = Double.toString(maintain);
+                    tv_maintain.setText(Integer.toString(maintain));
+                    tv_lose1.setText(Integer.toString(lose1));
+                    tv_lose2.setText(Integer.toString(lose2));
+                    tv_gain1.setText(Integer.toString(gain1));
+                    tv_gain2.setText(Integer.toString(gain2));
+                    break;
+
+                case "VERY ACTIVE":
+                    maintain_temp = bmr * 1.725;
+                    maintain = (int) maintain_temp;
+                    lose1 = maintain - 500;
+                    lose2 = maintain - 1000;
+                    gain1 = maintain + 500;
+                    gain2 = maintain + 100;
+
+                    cMaintain = Double.toString(maintain);
+                    tv_maintain.setText(Integer.toString(maintain));
+                    tv_lose1.setText(Integer.toString(lose1));
+                    tv_lose2.setText(Integer.toString(lose2));
+                    tv_gain1.setText(Integer.toString(gain1));
+                    tv_gain2.setText(Integer.toString(gain2));
+                    break;
+
+                case "EXTRA ACTIVE":
+                    maintain_temp = bmr * 1.9;
+                    maintain = (int) maintain_temp;
+                    lose1 = maintain - 500;
+                    lose2 = maintain - 1000;
+                    gain1 = maintain + 500;
+                    gain2 = maintain + 100;
+
+                    cMaintain = Integer.toString(maintain);
+                    tv_maintain.setText(Integer.toString(maintain));
+                    tv_lose1.setText(Integer.toString(lose1));
+                    tv_lose2.setText(Integer.toString(lose2));
+                    tv_gain1.setText(Integer.toString(gain1));
+                    tv_gain2.setText(Integer.toString(gain2));
+                    break;
+
+
             }
+
+
+
+            boolean isInserted = helper.insert(input_age,total_height_inches, total_weight, input_activity, bmr_result, cMaintain);//String lahat
+
+            if(isInserted == true){
+                Toast.makeText(this, "Record addedd SUCCESS!", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, "Record addedd FAIL!", Toast.LENGTH_LONG).show();
+            }
+
+
         }catch(Exception e){
             Toast.makeText(this,"Insert missing field..", Toast.LENGTH_LONG).show();
         }
@@ -99,6 +194,12 @@ public class result extends AppCompatActivity {
 
         total_cm = 2.54 * total_inch;
         return total_cm;
+
+    }
+
+    public void saveResult(View v){
+
+
 
     }
 }

@@ -1,6 +1,7 @@
 package com.concepcion.eisen.caloriecalculator;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,67 +23,72 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         radioGroup = findViewById(R.id.radioGroup);
-
-    }
+           }
 
     public void process_calculate(View v){
-        Intent i=null;
+
+        try {
+
+            Intent i = null;
 
 
+            editTextAge = (EditText) findViewById(R.id.etAge);
+            editTextFeet = (EditText) findViewById(R.id.etFeet);
+            editTextInches = (EditText) findViewById(R.id.etInches);
+            editTextWeight = (EditText) findViewById(R.id.etWeight);
 
-        editTextAge = (EditText) findViewById(R.id.etAge);
-        editTextFeet = (EditText) findViewById(R.id.etFeet);
-        editTextInches = (EditText) findViewById(R.id.etInches);
-        editTextWeight = (EditText) findViewById(R.id.etWeight);
+            checkBoxMale = (CheckBox) findViewById(R.id.cbMale);
+            checkBoxFemale = (CheckBox) findViewById(R.id.cbFemale);
 
-        checkBoxMale = (CheckBox) findViewById(R.id.cbMale);
-        checkBoxFemale = (CheckBox) findViewById(R.id.cbFemale);
-
-        //set Values
-        String age = editTextAge.getText().toString();
-        String feet = editTextFeet.getText().toString();
-        String inches = editTextInches.getText().toString();
-        String weight = editTextWeight.getText().toString();
-
+            //set Values
+            String age = editTextAge.getText().toString();
+            String feet = editTextFeet.getText().toString();
+            String inches = editTextInches.getText().toString();
+            String weight = editTextWeight.getText().toString();
 
 
-        //set gender
-        Boolean gender_pass=false;
-        String gender = "gender_not_set";
+            //set gender
+            Boolean gender_pass = false;
+            String gender = "gender_not_set";
 
-        if(checkBoxFemale.isChecked() && checkBoxMale.isChecked()){
-            Toast.makeText(this, "Choose only 1 gender", Toast.LENGTH_LONG).show();
-        }else if((!checkBoxFemale.isChecked()) && (!checkBoxMale.isChecked())){
-            Toast.makeText(this, "Choose a gender", Toast.LENGTH_LONG).show();
-        }else if(checkBoxFemale.isChecked()){
-            gender = "FEMALE";
-            gender_pass = true;
-        }else if(checkBoxMale.isChecked()){
-            gender = "MALE";
-            gender_pass = true;
-        }
+            if (checkBoxFemale.isChecked() && checkBoxMale.isChecked()) {
+                Toast.makeText(this, "Choose only 1 gender", Toast.LENGTH_LONG).show();
+            } else if ((!checkBoxFemale.isChecked()) && (!checkBoxMale.isChecked())) {
+                Toast.makeText(this, "Choose a gender", Toast.LENGTH_LONG).show();
+            } else if (checkBoxFemale.isChecked()) {
+                gender = "FEMALE";
+                gender_pass = true;
+            } else if (checkBoxMale.isChecked()) {
+                gender = "MALE";
+                gender_pass = true;
+            }
 
-        //set Activity
-        String activity = radioButton.getText().toString().toUpperCase();
+            //set Activity
+            String activity = radioButton.getText().toString().toUpperCase();
 
 
-        ///////////////////////////////////////Send to calculate///////////////////////////////////////
-        if (v.getId() == R.id.calculatebtn && gender_pass ){
-            i = new Intent(this,result.class);
-            i.putExtra("age_input", age);
-            i.putExtra("feet_input", feet);
-            i.putExtra("inches_input", inches);
-            i.putExtra("weight_input", weight);
-            i.putExtra("gender_input", gender);
-            i.putExtra("activity_input", activity);
-            startActivity(i);
-        }else{
+            ///////////////////////////////////////Send to calculate///////////////////////////////////////
+            if (v.getId() == R.id.calculatebtn && gender_pass) {
+                i = new Intent(this, result.class);
+                i.putExtra("age_input", age);
+                i.putExtra("feet_input", feet);
+                i.putExtra("inches_input", inches);
+                i.putExtra("weight_input", weight);
+                i.putExtra("gender_input", gender);
+                i.putExtra("activity_input", activity);
+                startActivity(i);
+            } else {
+                Toast.makeText(this, "Insert values for the missing fields", Toast.LENGTH_SHORT).show();
+            }
+
+        }catch (Exception e){
             Toast.makeText(this, "Insert values for the missing fields", Toast.LENGTH_SHORT).show();
         }
     }
