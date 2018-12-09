@@ -19,19 +19,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="LOGO"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnprogress"
         android:layout_width="wrap_content"
@@ -40,7 +27,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="8dp"
         android:onClick="change_view"
-        android:text="Progress"
+        android:text="History"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
@@ -103,8 +90,8 @@
         android:id="@+id/textView29"
         android:layout_width="109dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="9dp"
         android:layout_weight="1"
         android:background="@color/colorAccent"
         android:text="FOOD"
@@ -204,48 +191,64 @@
                 android:id="@+id/textView38"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Grapes                      1 cup                                       100" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Grapes                      1 cup                                       100"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView39"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Orange                      1 (4 oz.)                                   53" />
+                android:background="@android:color/darker_gray"
+                android:text="Orange                      1 (4 oz.)                                   53"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/textView40"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pear                           1 (5 oz.)	                                 82" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Pear                           1 (5 oz.)	                                 82"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView41"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Peach                        1 (6 oz.)	                                 67" />
+                android:background="@android:color/darker_gray"
+                android:text="Peach                        1 (6 oz.)	                                 67"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/textView42"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pineapple                  1 cup	                                       82" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Pineapple                  1 cup	                                       82"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView43"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Strawberry                1 cup                                       53" />
+                android:background="@android:color/darker_gray"
+                android:text="Strawberry                1 cup                                       53"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/textView44"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Watermelon              1 cup                                       50" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Watermelon              1 cup                                       50"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView45"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView46"
@@ -258,7 +261,9 @@
                 android:id="@+id/textView21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryLight"
                 android:text="Asparagus                  1 cup	                                     27"
+                android:textColor="@android:color/background_light"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="421dp" />
 
@@ -266,7 +271,9 @@
                 android:id="@+id/textView23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
                 android:text="Broccoli                      1 cup	                                     45"
+                android:textColor="@android:color/background_dark"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="518dp" />
 
@@ -274,7 +281,9 @@
                 android:id="@+id/textView24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryLight"
                 android:text="Carrots	                      1 cup	                                     50"
+                android:textColor="@android:color/background_light"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="457dp" />
 
@@ -282,7 +291,9 @@
                 android:id="@+id/textView25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
                 android:text="Cucumber                  4 oz.	                                        17"
+                android:textColor="@android:color/background_dark"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="474dp" />
 
@@ -290,7 +301,9 @@
                 android:id="@+id/textView31"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryLight"
                 android:text="Eggplant                     1 cup                                       35"
+                android:textColor="@android:color/background_light"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="491dp" />
 
@@ -298,14 +311,18 @@
                 android:id="@+id/textView32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
                 android:text="Lettuce                       1 cup	                                     5"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/textView33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tomato                       1 cup	                                     22" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Tomato                       1 cup	                                     22"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView47"
@@ -323,43 +340,57 @@
                 android:id="@+id/textView48"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Beef            	              2 oz.	                                       142" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Beef            	              2 oz.	                                       142"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView49"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chicken                       2 oz.                                       136" />
+                android:background="@android:color/darker_gray"
+                android:text="Chicken                       2 oz.                                       136"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/textView50"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tofu                            4 oz.                                        86" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Tofu                            4 oz.                                        86"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView51"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Egg                              1 large	                                  78" />
+                android:background="@android:color/darker_gray"
+                android:text="Egg                              1 large	                                  78"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/textView52"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fish                              2 oz.	                                     136" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Fish                              2 oz.	                                     136"
+                android:textColor="@android:color/background_light" />
 
             <TextView
                 android:id="@+id/textView54"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pork                             2 oz.                                        137" />
+                android:background="@android:color/darker_gray"
+                android:text="Pork                             2 oz.                                        137"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/textView55"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shrimp                         2 oz.                                        56" />
+                android:background="@color/colorPrimaryLight"
+                android:text="Shrimp                         2 oz.                                        56"
+                android:textColor="@android:color/background_light" />
         </LinearLayout>
     </ScrollView>
 

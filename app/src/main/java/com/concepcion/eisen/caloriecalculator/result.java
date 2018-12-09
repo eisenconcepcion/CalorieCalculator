@@ -1,6 +1,7 @@
 package com.concepcion.eisen.caloriecalculator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +11,15 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class result extends AppCompatActivity {
 
     TextView tv_bmr,tv_maintain, tv_lose1, tv_lose2, tv_gain1, tv_gain2;
     DBHelper helper;
     Cursor table;
-    String cMaintain;
+    String cMaintain,save_input_age,save_total_height_inches, save_total_weight, save_input_activity, save_bmr_result;
 
     @Override
 
@@ -50,21 +54,28 @@ public class result extends AppCompatActivity {
             int weight = Integer.parseInt(input_weight);
             int feet = Integer.parseInt(input_feet);
             int inches = Integer.parseInt(input_inches);
-            int temp = feet + inches;
+            //int temp = feet + inches;
 
-            String total_height_inches = Integer.toString(temp);
+            //String total_height_inches = Integer.toString(temp);
             String total_weight = Integer.toString(weight);
+
             double height = getHeight(feet, inches);
             double bmr;
 
+            save_input_age = input_age;
+            save_total_height_inches = input_feet + "'" + input_inches;
+            save_total_weight = total_weight;
+            save_input_activity = input_activity;
 
             if (input_gender.equals("MALE")) {
                 bmr = (10 * weight + 6.25 * height - 5 * age + 5);
             } else {
                 bmr = (10 * weight + 6.25 * height - 5 * age - 161);
             }
+            int int_bmr = (int) bmr;
+            String bmr_result = Integer.toString(int_bmr);
+            save_bmr_result = bmr_result;
 
-            String bmr_result = Double.toString(bmr);
             tv_bmr.setText(bmr_result);
 
             //GIVING VALUES TO THE ACTIVITY
@@ -74,13 +85,13 @@ public class result extends AppCompatActivity {
 
                 case "SEDENTARY":
                     maintain_temp = bmr * 1.2;
-                    maintain = (int) maintain_temp;
+                    maintain = (int) (maintain_temp);
                     lose1 = maintain - 500;
                     lose2 = maintain - 1000;
                     gain1 = maintain + 500;
                     gain2 = maintain + 100;
 
-                    cMaintain = Double.toString(maintain);
+                    cMaintain = Integer.toString(maintain);
                     tv_maintain.setText(Integer.toString(maintain));
                     tv_lose1.setText(Integer.toString(lose1));
                     tv_lose2.setText(Integer.toString(lose2));
@@ -157,15 +168,6 @@ public class result extends AppCompatActivity {
 
 
 
-            boolean isInserted = helper.insert(input_age,total_height_inches, total_weight, input_activity, bmr_result, cMaintain);//String lahat
-
-            if(isInserted == true){
-                Toast.makeText(this, "Record addedd SUCCESS!", Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(this, "Record addedd FAIL!", Toast.LENGTH_LONG).show();
-            }
-
-
         }catch(Exception e){
             Toast.makeText(this,"Insert missing field..", Toast.LENGTH_LONG).show();
         }
@@ -198,6 +200,24 @@ public class result extends AppCompatActivity {
     }
 
     public void saveResult(View v){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = dateFormat.format(new Date()); // Find todays date
+
+
+
+        SharedPreferences sp = getSharedPreferences(currentDate, MODE_PRIVATE);
+        SharedPreferences.Editor writer = sp.edit();
+
+
+        writer.putString("date", currentDate);
+        //writer.putString("age", save_input_age);
+        writer.putString("height", save_total_height_inches);
+        writer.putString("weight", save_total_weight);
+        //writer.putString("activity", save_input_activity);
+        writer.putString("bmr", save_bmr_result);
+        //writer.putString("maintain", cMaintain);
+        writer.commit();
+        Toast.makeText(this, "Data saved...", Toast.LENGTH_LONG).show();
 
 
 
